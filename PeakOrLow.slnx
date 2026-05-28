@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="PeakOrLow.Functions/PeakOrLow.Functions.csproj" />
+  <Project Path="PeakOrLow.Web/PeakOrLow.Web.csproj" />
+</Solution>

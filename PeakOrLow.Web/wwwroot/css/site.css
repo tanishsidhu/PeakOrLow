@@ -1,0 +1,410 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 18px; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #ffffff;
+  color: #111111;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Hero header (full-bleed dark) ───────────────── */
+.hero-header {
+  background: #181818;
+  width: 100%;
+  padding: 40px 0 36px;
+}
+
+.hero-inner {
+  max-width: 940px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.hero-top {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.brand-icon {
+  width: 36px;
+  height: 48px;
+  flex-shrink: 0;
+}
+
+.brand-words {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.05;
+}
+
+.brand-peak {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+}
+
+.brand-low {
+  font-size: 2.2rem;
+  font-weight: 400;
+  color: #777777;
+  letter-spacing: -0.01em;
+}
+
+.hero-date {
+  font-size: 0.8rem;
+  color: #666;
+  padding-bottom: 6px;
+}
+
+.hero-tagline {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  color: #666;
+  text-transform: uppercase;
+}
+
+/* ── Page layout ─────────────────────────────────── */
+.page-wrap {
+  max-width: 940px;
+  margin: 0 auto;
+  padding: 56px 40px 100px;
+}
+
+/* ── Dividers ─────────────────────────────────────── */
+.divider {
+  border: none;
+  border-top: 1px solid #e8e8e8;
+  margin: 52px 0;
+}
+
+/* ── Section labels ───────────────────────────────── */
+.section-label {
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #111;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+}
+
+/* ── Body text ────────────────────────────────────── */
+.body-text {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.8;
+  color: #222;
+  margin-bottom: 20px;
+}
+
+/* ── Placeholder ──────────────────────────────────── */
+.placeholder-message {
+  padding: 56px 0;
+  color: #888;
+  font-size: 1.05rem;
+}
+
+/* ── Headline cards ───────────────────────────────── */
+.headline-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  counter-reset: headline-counter;
+}
+
+.headline-card {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  counter-increment: headline-counter;
+}
+
+.headline-card::before {
+  content: counter(headline-counter);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #bbb;
+  min-width: 20px;
+  padding-top: 4px;
+  flex-shrink: 0;
+}
+
+.headline-img {
+  width: 120px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+  background: #f3f3f3;
+}
+
+.headline-content {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1;
+}
+
+.headline-text {
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.45;
+  color: #111;
+}
+
+.headline-summary {
+  font-size: 0.92rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+.read-more-btn {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #111;
+  text-decoration: none;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 1px;
+  transition: border-color 0.15s, color 0.15s;
+  width: fit-content;
+}
+
+.read-more-btn:hover {
+  color: #000;
+  border-color: #000;
+}
+
+/* ── Investment signal badge ──────────────────────── */
+.signal-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+.signal-badge {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  padding: 5px 14px;
+  border-radius: 20px;
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+
+.signal-cautious      { background: #fff7e6; color: #b45309; border: 1px solid #f6d28c; }
+.signal-neutral       { background: #f3f4f6; color: #374151; border: 1px solid #d1d5db; }
+.signal-opportunistic { background: #f0fdf4; color: #166534; border: 1px solid #86efac; }
+
+.signal-rationale {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+/* ── Watch list ───────────────────────────────────── */
+.watch-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.watch-list li {
+  font-size: 0.97rem;
+  padding-left: 18px;
+  position: relative;
+  color: #222;
+}
+
+.watch-list li::before {
+  content: '\2192';
+  position: absolute;
+  left: 0;
+  color: #aaa;
+  font-size: 0.85rem;
+  top: 2px;
+}
+
+/* ── Complexity traffic-light pill ───────────────── */
+.complexity-pill-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.complexity-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 6px 14px 6px 10px;
+  border-radius: 24px;
+  text-transform: uppercase;
+}
+
+.complexity-light {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.complexity-green  { background: #f0fdf4; color: #166534; border: 1px solid #86efac; }
+.complexity-yellow { background: #fffbeb; color: #92400e; border: 1px solid #fcd34d; }
+.complexity-red    { background: #fef2f2; color: #991b1b; border: 1px solid #fca5a5; }
+
+.complexity-green  .complexity-light { background: #22c55e; box-shadow: 0 0 6px #22c55e88; }
+.complexity-yellow .complexity-light { background: #f59e0b; box-shadow: 0 0 6px #f59e0b88; }
+.complexity-red    .complexity-light { background: #ef4444; box-shadow: 0 0 6px #ef444488; }
+
+.complexity-reason {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* ── Premium block ───────────────────────────────── */
+.premium-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.premium-header .section-label { margin-bottom: 0; }
+
+.premium-badge {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  border: 1px solid #d1d5db;
+  color: #9ca3af;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.premium-pitch {
+  color: #333;
+  margin-bottom: 28px;
+}
+
+.premium-pitch em { font-style: italic; color: #555; }
+
+.locked-input-wrap { margin-bottom: 32px; }
+
+.locked-input {
+  width: 100%;
+  padding: 12px 18px;
+  border: 1px dashed #d1d5db;
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: #aaa;
+  opacity: 0.5;
+  cursor: not-allowed;
+  outline: none;
+  background: #fafafa;
+  border-radius: 8px;
+}
+
+/* ── Early access block ──────────────────────────── */
+.early-access-block {
+  margin-top: 40px;
+  padding-top: 32px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.early-access-heading {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #111;
+  margin-bottom: 6px;
+}
+
+.early-access-sub {
+  font-size: 0.95rem;
+  color: #777;
+  margin-bottom: 22px;
+}
+
+/* ── Waitlist form ────────────────────────────────── */
+.waitlist-form {
+  display: flex;
+  gap: 10px;
+  max-width: 500px;
+  flex-wrap: wrap;
+}
+
+.email-input {
+  flex: 1;
+  padding: 12px 18px;
+  border: 1.5px solid #d1d5db;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 0.97rem;
+  outline: none;
+  min-width: 220px;
+  transition: border-color 0.15s;
+}
+
+.email-input:focus { border-color: #111; }
+
+.submit-btn {
+  padding: 12px 24px;
+  background: #111;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 0.97rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.15s;
+}
+
+.submit-btn:hover { opacity: 0.82; }
+
+.waitlist-success { margin-top: 14px; font-size: 0.92rem; color: #166534; }
+.waitlist-error   { margin-top: 14px; font-size: 0.92rem; color: #991b1b; }
+
+/* ── Footer ───────────────────────────────────────── */
+.site-footer {
+  font-size: 0.78rem;
+  color: #bbb;
+}
+
+/* ── Responsive ───────────────────────────────────── */
+@media (max-width: 640px) {
+  html { font-size: 16px; }
+  .hero-inner { padding: 0 20px; }
+  .brand-peak, .brand-low { font-size: 1.75rem; }
+  .brand-icon { width: 28px; height: 38px; }
+  .page-wrap { padding: 40px 20px 72px; }
+  .headline-img { width: 90px; height: 62px; }
+  .waitlist-form { flex-direction: column; }
+  .email-input, .submit-btn { width: 100%; }
+  .divider { margin: 36px 0; }
+  .hero-top { flex-direction: column; align-items: flex-start; gap: 8px; }
+}

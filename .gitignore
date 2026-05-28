@@ -1,0 +1,41 @@
+# .NET build output
+bin/
+obj/
+*.user
+*.suo
+
+# Secrets and local config
+appsettings.Development.json
+appsettings.Local.json
+.env
+secrets.json
+
+# Cache directory
+cache/
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# Rider
+.idea/
+
+# NuGet packages
+*.nupkg
+packages/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Azure Functions local settings (contains secrets)
+local.settings.json
+
+# Claude Code settings (IDE-specific, not part of the project)
+.claude/
+
+# Temporary diagnostic tools
+tools/
+
+# Unused scaffolded third-party libraries (Bootstrap, jQuery) — not referenced by the app
+wwwroot/lib/

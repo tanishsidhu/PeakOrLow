@@ -1,0 +1,170 @@
+@model PeakOrLow.Web.Models.BriefingModel?
+@{
+    ViewData["Title"] = "PeakOrLow — Markets move. Here's what it means.";
+    var today = DateTime.UtcNow.ToString("MMMM d, yyyy");
+    var hasBriefing = Model is not null;
+}
+
+<!-- ── Full-bleed dark hero header ─────────────────── -->
+<header class="hero-header">
+    <div class="hero-inner">
+        <div class="hero-top">
+            <div class="brand">
+                <svg class="brand-icon" viewBox="0 0 36 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <polygon points="18,2 34,28 2,28" fill="#ffffff"/>
+                    <polygon points="18,46 2,20 34,20" fill="#555555"/>
+                </svg>
+                <div class="brand-words">
+                    <span class="brand-peak">peak</span>
+                    <span class="brand-low">or low</span>
+                </div>
+            </div>
+            <span class="hero-date">@today</span>
+        </div>
+        <p class="hero-tagline">MARKETS MOVE. HERE'S WHAT IT MEANS FOR YOUR INVESTMENTS.</p>
+    </div>
+</header>
+
+<!-- ── Main content ─────────────────────────────────── -->
+<div class="page-wrap">
+
+    @if (!hasBriefing)
+    {
+        <div class="placeholder-message">
+            <p>Today's briefing is being prepared. It refreshes every morning at 7:00 AM CET, before markets open.</p>
+        </div>
+    }
+    else
+    {
+        <!-- Section 1: Today's Headlines -->
+        <section class="briefing-section">
+            <p class="section-label">@Model!.Section1.Title</p>
+            <ol class="headline-list">
+                @foreach (var item in Model.Section1.Items)
+                {
+                    <li class="headline-card">
+                        @if (!string.IsNullOrWhiteSpace(item.ImageUrl))
+                        {
+                            <img class="headline-img" src="@item.ImageUrl" alt="" loading="lazy" onerror="this.style.display='none'" />
+                        }
+                        <div class="headline-content">
+                            <span class="headline-text">@item.Headline</span>
+                            <span class="headline-summary">@item.Summary</span>
+                            @if (!string.IsNullOrWhiteSpace(item.ArticleUrl))
+                            {
+                                <a href="@item.ArticleUrl" target="_blank" rel="noopener noreferrer" class="read-more-btn">Read more &rarr;</a>
+                            }
+                        </div>
+                    </li>
+                }
+            </ol>
+        </section>
+
+        <!-- Section 2: Market Impact -->
+        <hr class="divider" />
+        <section class="briefing-section">
+            <p class="section-label">@Model.Section2.Title</p>
+            @foreach (var para in Model.Section2.Paragraphs)
+            {
+                <p class="body-text">@para</p>
+            }
+            @if (Model.Section2.InvestmentSignal is not null)
+            {
+                var sigClass = Model.Section2.InvestmentSignal.Direction switch
+                {
+                    "Cautious"      => "signal-cautious",
+                    "Opportunistic" => "signal-opportunistic",
+                    _               => "signal-neutral"
+                };
+                <div class="signal-row">
+                    <span class="signal-badge @sigClass">@Model.Section2.InvestmentSignal.Direction</span>
+                    <span class="signal-rationale">@Model.Section2.InvestmentSignal.Rationale</span>
+                </div>
+            }
+        </section>
+
+        <!-- Section 3: Tomorrow's Outlook -->
+        <hr class="divider" />
+        <section class="briefing-section">
+            <p class="section-label">@Model.Section3.Title</p>
+            @if (Model.Section3.Watch.Count > 0)
+            {
+                <ul class="watch-list">
+                    @foreach (var watchItem in Model.Section3.Watch)
+                    {
+                        <li>@watchItem</li>
+                    }
+                </ul>
+            }
+            <p class="body-text">@Model.Section3.WorkplaceImpact</p>
+            @{
+                var complexityClass = Model.Section3.ComplexityRating switch
+                {
+                    "Green"  => "complexity-green",
+                    "Yellow" => "complexity-yellow",
+                    "Red"    => "complexity-red",
+                    _        => "complexity-green"
+                };
+                var complexityLabel = Model.Section3.ComplexityRating switch
+                {
+                    "Green"  => "Quiet Day",
+                    "Yellow" => "Moderate Day",
+                    "Red"    => "Hectic Day",
+                    _        => Model.Section3.ComplexityRating
+                };
+            }
+            <div class="complexity-pill-wrap">
+                <span class="complexity-pill @complexityClass">
+                    <span class="complexity-light"></span>
+                    @complexityLabel
+                </span>
+                <span class="complexity-reason">@Model.Section3.ComplexityReason</span>
+            </div>
+        </section>
+    }
+
+    <!-- Section: Premium + Early Access -->
+    <hr class="divider" />
+    <section class="briefing-section premium-block">
+        <div class="premium-header">
+            <p class="section-label">ASK A FOLLOW-UP</p>
+            <span class="premium-badge">PREMIUM</span>
+        </div>
+
+        <p class="body-text premium-pitch">
+            Why commit to a $20/month AI subscription when you only need answers a few times a week?
+        </p>
+        <p class="body-text premium-pitch">
+            PeakOrLow gives you the same world-class AI model — starting at just $1. Ask why a stock dropped. Understand what a rate decision means for you. Find out whether now is the right time to act. No monthly commitment, no wasted spend — just top up when you need more answers and stop whenever you want.
+        </p>
+        <p class="body-text premium-pitch">
+            And when the markets get complicated, AI alone isn't always enough.
+        </p>
+        <p class="body-text premium-pitch">
+            That's why PeakOrLow also connects you with real, world-class financial advisors who will review your portfolio and give you personalised insights — the kind of call that actually helps you make confident decisions, not just informed ones.
+        </p>
+
+        <div class="locked-input-wrap">
+            <input type="text" class="locked-input" disabled placeholder="Ask PeakOrLow anything about today's market…" />
+        </div>
+
+        <!-- Early access form -->
+        <div class="early-access-block">
+            <p class="early-access-heading">Get early access</p>
+            <p class="early-access-sub">Be first in line when Premium launches. No spam, ever.</p>
+            <form id="waitlist-form" class="waitlist-form" novalidate>
+                <input type="email" id="waitlist-email" class="email-input" placeholder="your@email.com" required />
+                <button type="submit" class="submit-btn">Notify Me &rarr;</button>
+            </form>
+            <p id="waitlist-success" class="waitlist-success" style="display:none">You're on the list. We'll be in touch.</p>
+            <p id="waitlist-error" class="waitlist-error" style="display:none"></p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <hr class="divider" />
+    <footer class="site-footer">
+        <p>PeakOrLow &mdash; Briefing refreshes every morning at 7:00 AM CET, before markets open.</p>
+    </footer>
+
+</div>
