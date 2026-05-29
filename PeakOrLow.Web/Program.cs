@@ -24,8 +24,9 @@ using (var scope = app.Services.CreateScope())
         await waitlist.EnsureTableExistsAsync();
 }
 
-// In Development: auto-generate the briefing on startup if today's cache is missing
-if (app.Environment.IsDevelopment())
+// On startup: generate today's briefing in the background if the cache is missing or stale.
+// In Production the Azure Functions timer is the primary trigger; this is a fallback
+// that also covers the first boot after deployment.
 {
     using var scope = app.Services.CreateScope();
     var cache    = scope.ServiceProvider.GetRequiredService<ICacheService>();
